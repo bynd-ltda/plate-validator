@@ -1,0 +1,5 @@
+{
+  "endpoint": {
+      "api" : "http://ec2-54-94-212-181.sa-east-1.compute.amazonaws.com:8082"
+    }
+}
