@@ -21,9 +21,6 @@ export default class Valida extends Component {
         showPassword: true
       }
 
-  static navigationOptions = {
-    header: null
-  };
 
   _toggleModal = () => this.setState({ isModalVisible: !this.state.isModalVisible });
 

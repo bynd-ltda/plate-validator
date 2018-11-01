@@ -17,7 +17,7 @@ const createNavigator = () => StackNavigator({
       headerStyle: {
         backgroundColor: colors.primary,
       },
-      headerTintColor: colors.white,
+      headerTintColor: colors.black,
       headerBackTitle: null
     }
   });
