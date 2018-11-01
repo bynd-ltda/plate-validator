@@ -1,7 +1,7 @@
 import { Platform } from 'react-native';
 
 export const IMAGES = {
-   eye : require('./../assets/eye-regular.svg'),
+   eye : require('./../assets/eye.png'),
 }
 
 export const FONTS = {
@@ -21,6 +21,10 @@ export const KEYS = {
         secondInput: 'Senha',
         txtButton: 'Entrar',
         forgetPassword: 'Esqueceu a senha?'
+    },
+    valida: {
+        title: 'Validar placa',
+        txtButton: 'Validar',
     },
     errors: {
         networkTitle: 'Sem conexão com a internet',

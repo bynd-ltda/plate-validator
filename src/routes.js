@@ -5,9 +5,11 @@ import { Text, Platform } from 'react-native';
 import { colors, metrics} from './styles';
 
 import Login from './pages/login';
+import Valida from './pages/valida';
 
 const createNavigator = () => StackNavigator({
     Login: { screen: Login },
+    Valida: { screen: Valida}
     
   },{
     initialRouteName:  'Login',

@@ -20,6 +20,7 @@ export default class Login extends Component {
         password: '',
         error: false,
         isModalVisible: false,
+        showPassword: true
       }
 
   static navigationOptions = {
@@ -28,16 +29,13 @@ export default class Login extends Component {
 
   _toggleModal = () => this.setState({ isModalVisible: !this.state.isModalVisible });
 
-  navigateToForgot = () => {
-    this.props.navigation.navigate('Forgot')
+  navigateToValida = () => {
+    this.props.navigation.navigate('Valida')
   }
 
-  navigateToHome = () => {
-    this.props.navigation.navigate('Home')
-  }
 
-  navigateToTutorial = () => {
-    this.props.navigation.navigate('ComoUsar')
+  showPassword = () => {
+    this.setState({ showPassword: !this.state.showPassword });
   }
 
   render(){
@@ -59,22 +57,30 @@ export default class Login extends Component {
                     onChangeText={ email => this.setState({ email })}
 
                 />
-                <TextInput
-                    style={styles.txtInput}
-                    autoCapitalize= "none"
-                    autoCorrect={false}
-                    value={this.state.password}
-                    placeholder={secondInput}
-                    onChangeText={ password => this.setState({ password })}
-                />
-                <Image style={styles.eye} source={eye} />
+                <View style={styles.firstSection}>
+                  <TextInput
+                      style={styles.txtInput}
+                      autoCapitalize= "none"
+                      autoCorrect={false}
+                      secureTextEntry={this.state.showPassword}
+                      value={this.state.password}
+                      placeholder={secondInput}
+                      onChangeText={ password => this.setState({ password })}
+                  />
+                  <TouchableOpacity style={styles.eyeArea} onPress={ () => {
+                      this.showPassword();
+                   }}>
+                     <Image style={styles.eye} source={eye} />
+                  </TouchableOpacity>
+                </View>
+                <Text style={styles.count}>0/20</Text>
                 <TouchableOpacity style={styles.Link} onPress={ () => {
 
                 }}>
                     <Text style={styles.txtLink}>{forgetPassword}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttom} onPress={ () => {
-                    this.login();
+                    this.navigateToValida();
                 }}>
                     <Text style={styles.txtButtom}>{txtButton}</Text>
                 </TouchableOpacity>
