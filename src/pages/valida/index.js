@@ -31,6 +31,10 @@ import { KEYS } from './../../Constants';
 
   _toggleModal = () => this.setState({ isModalVisible: !this.state.isModalVisible });
 
+  componentDidMount(){
+    
+  }
+
   doValida = () => {
     const { email, password } = this.props.navigation.state.params;
     
@@ -86,6 +90,8 @@ import { KEYS } from './../../Constants';
                     <Text style={styles.txtButtom}>{txtButton}</Text>
                 </TouchableOpacity>
             </View>
+
+            <Text>{JSON.stringify(this.props.data)}</Text>
            
 
         
@@ -94,8 +100,13 @@ import { KEYS } from './../../Constants';
   }
 }
 
-
+const mapStateToProps = state => {
+  return {
+    data: state.valida
+  }
+  
+}
 
 const mapDispatchToProps = dispatch => bindActionCreators( ValidaActions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Valida)
+export default connect(mapStateToProps, mapDispatchToProps)(Valida)
