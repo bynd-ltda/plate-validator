@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 
 import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, Image} from 'react-native';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as AuthActions } from './../../store/ducks/auth';
+
 import styles from './styles';
 
 import { IMAGES, KEYS } from './../../Constants';
 
 
-export default class Login extends Component {
+class Login extends Component {
 
     constructor(props){
         super(props);
@@ -36,6 +40,13 @@ export default class Login extends Component {
 
   showPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
+  }
+
+  doLogin = () => {
+    
+
+    this.props.doAuthRequest(this.state.email, this.state.password);
+    this.showPassword();
   }
 
   render(){
@@ -80,7 +91,7 @@ export default class Login extends Component {
                     <Text style={styles.txtLink}>{forgetPassword}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttom} onPress={ () => {
-                    this.navigateToValida();
+                    this.doLogin();
                 }}>
                     <Text style={styles.txtButtom}>{txtButton}</Text>
                 </TouchableOpacity>
@@ -93,3 +104,6 @@ export default class Login extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => bindActionCreators( AuthActions, dispatch);
+
+export default connect(null, mapDispatchToProps)(Login)
