@@ -8,6 +8,12 @@ const initialState = []
 
 export default function auth( state = initialState, action) {
     switch(action.type){
+        case Types.AUTH_REQUEST :
+           return [ ...state ];
+        case Types.AUTH_SUCCESS :
+           return [ ...state, action.payload.data];
+        case Types.AUTH_FAILURE :
+           return [ ...state, action.payload.message];   
         default:
            return state;
     }
@@ -19,6 +25,18 @@ export const Creators = {
         payload: {
             email: email,
             password: password,
+        }
+    }),
+    doAuthSuccess : data => ({
+        type: Types.AUTH_SUCCESS,
+        payload: {
+            data
+        }
+    }),
+    doAuthError : message => ({
+        type: Types.AUTH_FAILURE,
+        payload: {
+            message
         }
     })
 }

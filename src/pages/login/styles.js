@@ -39,6 +39,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     
    },
+   buttomDisable:{
+    backgroundColor:colors.regular,
+    height:38,
+    marginTop: metrics.baseMargin * 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+    
+   },
    txtButtom:{
     //marginTop: metrics.baseMargin * 3,   
     color: colors.white,

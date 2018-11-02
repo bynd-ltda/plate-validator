@@ -19,13 +19,21 @@ const styles = StyleSheet.create({
    },
    form:{
     marginTop: metrics.baseMargin,
-    padding: metrics.basePadding 
+    padding: metrics.basePadding,
    },
-   txtInput:{
-    height:40,
+   txtInputLetter:{
     color: colors.black,
-    fontSize: 18,
-    width: '100%',
+    fontSize: 40,
+    width: 100,
+    borderBottomWidth: 1,
+    borderColor: colors.black,
+    marginTop: metrics.baseMargin * 2,
+
+   },
+   txtInputNumber:{
+    color: colors.black,
+    fontSize: 40,
+    width: 170,
     borderBottomWidth: 1,
     borderColor: colors.black,
     marginTop: metrics.baseMargin * 2

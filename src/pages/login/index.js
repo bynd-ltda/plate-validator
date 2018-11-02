@@ -10,6 +10,8 @@ import styles from './styles';
 
 import { IMAGES, KEYS } from './../../Constants';
 
+const { title, firstInput, secondInput, txtButton, forgetPassword} = KEYS.login;
+const { eye } = IMAGES;
 
 class Login extends Component {
 
@@ -22,9 +24,10 @@ class Login extends Component {
       state = {
         email:'',
         password: '',
+        autenticated: false,
         error: false,
         isModalVisible: false,
-        showPassword: true
+        showPassword: true,
       }
 
   static navigationOptions = {
@@ -34,25 +37,61 @@ class Login extends Component {
   _toggleModal = () => this.setState({ isModalVisible: !this.state.isModalVisible });
 
   navigateToValida = () => {
-    this.props.navigation.navigate('Valida')
+
+    this.setState({ autenticated: true});
+
+    if(this.props.auth){
+      if(this.state.autenticated == true){
+        this.props.navigation.navigate('Valida', {
+          email: this.state.email,
+          password: this.state.password
+        })
+      }
+    }      
   }
 
+  componentDidMount(){
+     this.navigateToValida();
+  }
 
   showPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
   }
 
   doLogin = () => {
-    
+    this.props.doAuthRequest(this.state.email, this.state.password); 
 
-    this.props.doAuthRequest(this.state.email, this.state.password);
-    this.showPassword();
+     
   }
+
+  showButtom = () => {
+    if(this.state.email && this.state.password != ''){
+      return (
+        <TouchableOpacity style={styles.buttom} onPress={ () => {
+          this.doLogin();
+          this.navigateToValida();
+        
+        }}>
+          <Text style={styles.txtButtom}>{txtButton}</Text>
+        </TouchableOpacity>
+      )
+    } else {
+      return (
+        <View style={styles.buttomDisable} onPress={ () => {
+        
+        }}>
+          <Text style={styles.txtButtom}>{txtButton}</Text>
+        </View>
+      )
+    }
+  }
+
+
 
   render(){
 
-    const { eye } = IMAGES;
-    const { title, firstInput, secondInput, txtButton, forgetPassword} = KEYS.login;
+    
+    
 
     return(
       <SafeAreaView style={styles.container}>
@@ -84,17 +123,15 @@ class Login extends Component {
                      <Image style={styles.eye} source={eye} />
                   </TouchableOpacity>
                 </View>
-                <Text style={styles.count}>0/20</Text>
+                <Text style={styles.count}>{this.state.password.length}/20</Text>
                 <TouchableOpacity style={styles.Link} onPress={ () => {
 
                 }}>
                     <Text style={styles.txtLink}>{forgetPassword}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttom} onPress={ () => {
-                    this.doLogin();
-                }}>
-                    <Text style={styles.txtButtom}>{txtButton}</Text>
-                </TouchableOpacity>
+               {
+                 this.showButtom()
+               }
             </View>
            
 
@@ -103,7 +140,13 @@ class Login extends Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+  
+}
 
 const mapDispatchToProps = dispatch => bindActionCreators( AuthActions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
