@@ -4,16 +4,23 @@ export const Types = {
     VALIDA_FAILURE: 'valida/VALIDA_FAILURE',
 };
 
-const initialState = []
+const initialState = {
+    data: {
+        status: '',
+		plate: '',
+		ride_schedule: '',
+		parking_lot: ''
+    }
+}
 
 export default function valida( state = initialState, action) {
     switch(action.type){
         case Types.VALIDA_REQUEST :
-           return [ ...state ];
+           return { ...state }  ;
         case Types.VALIDA_SUCCESS :
-           return [ ...state, action.payload.data];
+           return { ...state, data: action.payload.data} ;
         case Types.VALIDA_FAILURE :
-           return [ ...state, action.payload.message];
+           return { ...state, data: action.payload.message };
         default:
            return state;
     }

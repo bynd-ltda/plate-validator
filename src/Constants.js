@@ -2,6 +2,8 @@ import { Platform } from 'react-native';
 
 export const IMAGES = {
    eye : require('./../assets/eye.png'),
+   check: require('./../assets/check-circle.png'),
+   close: require('./../assets/close.png')
 }
 
 export const FONTS = {
@@ -25,6 +27,10 @@ export const KEYS = {
     valida: {
         title: 'Validar placa',
         txtButton: 'Validar',
+    },
+    check:{
+        txtButtonValidaother: 'Validar outro carro',
+        reportUser: 'Reportar usuario'
     },
     errors: {
         networkTitle: 'Sem conexão com a internet',

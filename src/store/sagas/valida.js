@@ -17,8 +17,8 @@ console.log(plate);
         
     } )
     if(response) {
-        console.log(response);
-        yield put(ValidaActions.doValidaSuccess(response.data));
+        //console.log(response.data.data);
+        yield put(ValidaActions.doValidaSuccess(response.data.data));
         
     } else {
         yield put(ValidaActions.doValidaError('Dados nao encontrado'));
