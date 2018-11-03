@@ -7,11 +7,13 @@ import { colors, metrics} from './styles';
 import Login from './pages/login';
 import Valida from './pages/valida';
 import Check from './pages/check';
+import Report from './pages/report';
 
 const createNavigator = () => StackNavigator({
     Login: { screen: Login },
     Valida: { screen: Valida},
-    Check: { screen: Check}
+    Check: { screen: Check},
+    Report: { screen: Report},
     
   },{
     initialRouteName:  'Login',

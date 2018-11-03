@@ -10,7 +10,6 @@ import styles from './styles';
 
 import { KEYS , IMAGES} from './../../Constants';
 
-import Modal from "react-native-modal";
 
 const { check , close } = IMAGES;
 const { txtButtonValidaother, reportUser } = KEYS.check;
@@ -34,7 +33,15 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
           email: email,
           password: password
         })
-      }  
+      } 
+  navigateToReport = () => {
+        const { email, password } = this.props.navigation.state.params;
+        console.log(email)
+        this.props.navigation.navigate('Report', {
+          email: email,
+          password: password
+        });
+      }      
 
   showButtom = () => {
         if(this.props.data.data.status !== 'invalid'){
@@ -56,7 +63,7 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
               <Text style={styles.txtButtomV}>{txtButtonValidaother}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttomV} onPress={ () => {
-              
+              this.navigateToReport();
             
             }}>
               <Text style={styles.txtButtomV}>{reportUser}</Text>
