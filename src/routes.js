@@ -16,7 +16,7 @@ const createNavigator = () => StackNavigator({
     Report: { screen: Report},
     
   },{
-    initialRouteName:  'Login',
+    initialRouteName:  'Report',
     navigationOptions: {
       headerStyle: {
         backgroundColor: colors.primary,

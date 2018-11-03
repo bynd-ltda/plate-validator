@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import {Text, TouchableOpacity, SafeAreaView,} from 'react-native';
+import {Text, TouchableOpacity, SafeAreaView, Image} from 'react-native';
 
 
 import styles from './styles';
 
-import { KEYS , IMAGES} from './../../Constants';
-const { txtButtonValidaother} = KEYS.check;
+import { IMAGES} from './../../Constants';
+const { emailSend } = IMAGES;
 
 export default class Report extends Component {
 
@@ -33,8 +33,8 @@ export default class Report extends Component {
   render(){
     return(
       <SafeAreaView style={styles.container}>
-        
-        <Text style={styles.txtSchedule}>Um email foi enviado para o setor responsavel</Text>
+        <Image style={styles.email} source={emailSend} />
+        <Text style={styles.txt}>Um email foi enviado para o setor responsavel</Text>
         <TouchableOpacity style={styles.buttom} onPress={ () => {
               this.navigateToValida();
             
