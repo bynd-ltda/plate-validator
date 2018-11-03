@@ -39,7 +39,7 @@ export default class Report extends Component {
               this.navigateToValida();
             
             }}>
-              <Text style={styles.txtButtom}>{txtButtonValidaother}</Text>
+              <Text style={styles.txtButtom}>Validar placa</Text>
         </TouchableOpacity>
       </SafeAreaView>
     )
