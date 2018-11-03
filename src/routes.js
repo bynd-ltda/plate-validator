@@ -6,10 +6,12 @@ import { colors, metrics} from './styles';
 
 import Login from './pages/login';
 import Valida from './pages/valida';
+import Check from './pages/check';
 
 const createNavigator = () => StackNavigator({
     Login: { screen: Login },
-    Valida: { screen: Valida}
+    Valida: { screen: Valida},
+    Check: { screen: Check}
     
   },{
     initialRouteName:  'Login',

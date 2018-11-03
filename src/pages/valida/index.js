@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, Image} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, ActivityIndicator} from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,6 +9,8 @@ import { Creators as ValidaActions } from './../../store/ducks/valida';
 import styles from './styles';
 
 import { KEYS } from './../../Constants';
+
+import Modal from "react-native-modal";
 
 
  class Valida extends Component {
@@ -24,12 +26,16 @@ import { KEYS } from './../../Constants';
         letter: '',
         number: '',  
         error: false,
-        isModalVisible: false,
         showPassword: true
       }
-
-
-  _toggleModal = () => this.setState({ isModalVisible: !this.state.isModalVisible });
+  
+  navigateToCheck = () => {
+    const { email, password } = this.props.navigation.state.params;
+            this.props.navigation.navigate('Check', {
+              email: email,
+              password: password
+            })
+          }         
 
   doValida = () => {
     const { email, password } = this.props.navigation.state.params;
@@ -37,11 +43,12 @@ import { KEYS } from './../../Constants';
     const plate = this.state.letter.toUpperCase() + "-" + this.state.number
    
 
-    this.props.doValidaRequest(email, password, plate);
-   
+    this.props.doValidaRequest(email, password, plate);  
+
+    
   }
 
-
+  
   render(){
 
     const { title, txtButton} = KEYS.valida;
@@ -82,20 +89,23 @@ import { KEYS } from './../../Constants';
               </View>
                 <TouchableOpacity style={styles.buttom} onPress={ () => {
                     this.doValida();
+                    this.navigateToCheck();
                 }}>
                     <Text style={styles.txtButtom}>{txtButton}</Text>
                 </TouchableOpacity>
             </View>
-           
-
         
       </SafeAreaView>
     )
   }
 }
 
+const mapStateToProps = state => ({
+ 
+  data: state.valida,
 
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators( ValidaActions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Valida)
+export default connect(mapStateToProps, mapDispatchToProps)(Valida)

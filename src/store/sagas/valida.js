@@ -1,6 +1,7 @@
-import { call } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 import api from './../../services/api';
 
+import { Creators as ValidaActions } from './../ducks/valida';
 
 export function* doValidaRequest(action) {
 
@@ -8,16 +9,21 @@ export function* doValidaRequest(action) {
 
 console.log(plate);
     try {
-    const response = yield call(api.get, `/validate`,{ plate: plate }, {
+    const response = yield call(api.get, `/pvl/validate?plate=${plate}`, {
         auth: {
             username: email,
             password: password,
-            
         }
         
     } )
+    if(response) {
+        //console.log(response.data.data);
+        yield put(ValidaActions.doValidaSuccess(response.data.data));
+        
+    } else {
+        yield put(ValidaActions.doValidaError('Dados nao encontrado'));
+    }
 
-    console.log(response);
 } catch (err){
     console.log(err)
 }
