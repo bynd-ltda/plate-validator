@@ -12,6 +12,8 @@ export default {
   success: '#9DCA83',
   danger: '#E37A7A',
   green: '#00b050',
+  red: '#cc092c',
+  yelow: '#fbbc48',
 
 transparent: 'transparent',
 darkTransparente: 'rgba(0, 0, 0, 0.6)',

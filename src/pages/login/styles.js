@@ -4,35 +4,46 @@ import { colors, metrics, general} from './../../styles';
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: colors.primary,
     padding: metrics.basePadding,
 
    },
    login:{
-     marginTop: metrics.baseMargin * 6,
+     //marginTop: metrics.baseMargin * 8,
+     marginLeft: '35%',
      alignItems: 'center',
      color: colors.black,
-     fontSize: 28,
+     fontSize: 38,
      fontWeight:'bold'
    },
    form:{
     marginTop: metrics.baseMargin,
     padding: metrics.basePadding 
    },
-   txtInput:{
+   txtInputRed:{
     height:40,
     color: colors.black,
     fontSize: 18,
     width: '100%',
     borderBottomWidth: 1,
-    borderColor: colors.black,
+    borderColor: colors.red,
+    marginTop: metrics.baseMargin * 2
+
+   },
+   txtInputYelow:{
+    height:40,
+    color: colors.black,
+    fontSize: 18,
+    width: '100%',
+    borderBottomWidth: 1,
+    borderColor: colors.yelow,
     marginTop: metrics.baseMargin * 2
 
    },
    buttom:{
-    backgroundColor:colors.secundary,
+    backgroundColor:colors.red,
     height:38,
     marginTop: metrics.baseMargin * 4,
     justifyContent: 'center',

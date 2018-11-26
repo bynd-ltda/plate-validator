@@ -90,16 +90,13 @@ class Login extends Component {
 
   render(){
 
-    
-    
-
     return(
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle="light-content" />
         <Text style={styles.login}>{title}</Text>
             <View style={styles.form}>
                 <TextInput
-                    style={styles.txtInput}
+                    style={this.state.email === '' ? styles.txtInputRed : styles.txtInputYelow}
                     autoCapitalize= "none"
                     autoCorrect={false}
                     value={this.state.email}
@@ -109,7 +106,7 @@ class Login extends Component {
                 />
                 <View style={styles.firstSection}>
                   <TextInput
-                      style={styles.txtInput}
+                      style={this.state.password === '' ? styles.txtInputRed : styles.txtInputYelow}
                       autoCapitalize= "none"
                       autoCorrect={false}
                       secureTextEntry={this.state.showPassword}
@@ -124,11 +121,7 @@ class Login extends Component {
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.count}>{this.state.password.length}/20</Text>
-                <TouchableOpacity style={styles.Link} onPress={ () => {
-
-                }}>
-                    <Text style={styles.txtLink}>{forgetPassword}</Text>
-                </TouchableOpacity>
+                
                {
                  this.showButtom()
                }
