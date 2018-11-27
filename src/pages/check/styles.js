@@ -4,7 +4,7 @@ import { colors, metrics, general} from './../../styles';
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.primary,
     padding: metrics.basePadding,
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
    },
    buttomV:{
-    backgroundColor:colors.secundary,
+    backgroundColor:colors.red,
     height:40,
     width: 200,
     marginTop: metrics.baseMargin * 4,
@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
     fontSize: 20
    },
    buttom:{
-    backgroundColor:colors.secundary,
+    backgroundColor:colors.red,
     height:40,
-    width: '100%',
+    width: '80%',
     marginTop: metrics.baseMargin * 4,
     justifyContent: 'center',
     alignItems: 'center',

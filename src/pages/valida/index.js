@@ -60,7 +60,7 @@ import Modal from "react-native-modal";
             <View style={styles.form}>
               <View style={styles.firstSection}>
                 <TextInput
-                    style={styles.txtInputLetter}
+                    style={this.state.letter === '' ? styles.txtInputLetterRed : styles.txtInputLetterYelow}
                     autoCapitalize= "characters"
                     autoCorrect={false}
                     autoFocus={true}
@@ -76,7 +76,7 @@ import Modal from "react-native-modal";
 
                 />
                 <TextInput
-                    style={styles.txtInputNumber}
+                    style={this.state.number === '' ? styles.txtInputNumberRed : styles.txtInputNumberYelow}
                     ref={(input) => { this.secondTextInput = input; }}
                     autoCapitalize= "none"
                     autoCorrect={false}

@@ -84,7 +84,7 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
           this.props.data.data.status === ''
           ? 
           <View>
-            <ActivityIndicator size="large" color="#30abbf" />
+            <ActivityIndicator size="large" color="#cc092c" />
             <Text style={styles.txtValid}>Validando</Text>
           </View>
           :

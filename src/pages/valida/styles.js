@@ -4,43 +4,62 @@ import { colors, metrics, general} from './../../styles';
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: colors.primary,
     padding: metrics.basePadding,
 
    },
    login:{
-     marginTop: metrics.baseMargin * 6,
+     //marginTop: metrics.baseMargin * 6,
+     marginLeft: '18%',
      alignItems: 'center',
      color: colors.black,
-     fontSize: 28,
+     fontSize: 38,
      fontWeight:'bold'
    },
    form:{
     marginTop: metrics.baseMargin,
     padding: metrics.basePadding,
    },
-   txtInputLetter:{
+   txtInputLetterRed:{
     color: colors.black,
     fontSize: 40,
     width: 100,
     borderBottomWidth: 1,
-    borderColor: colors.black,
+    borderColor: colors.red,
     marginTop: metrics.baseMargin * 2,
 
    },
-   txtInputNumber:{
+   txtInputLetterYelow:{
+    color: colors.black,
+    fontSize: 40,
+    width: 100,
+    borderBottomWidth: 1,
+    borderColor: colors.yelow,
+    marginTop: metrics.baseMargin * 2,
+
+   },
+   txtInputNumberRed:{
     color: colors.black,
     fontSize: 40,
     width: 170,
     borderBottomWidth: 1,
-    borderColor: colors.black,
+    borderColor: colors.red,
+    marginTop: metrics.baseMargin * 2
+
+   },
+   txtInputNumberYelow:{
+    color: colors.black,
+    fontSize: 40,
+    width: 170,
+    borderBottomWidth: 1,
+    borderColor: colors.yelow,
     marginTop: metrics.baseMargin * 2
 
    },
    buttom:{
-    backgroundColor:colors.secundary,
+    backgroundColor:colors.red,
     height:38,
     marginTop: metrics.baseMargin * 4,
     justifyContent: 'center',

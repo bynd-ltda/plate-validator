@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 
 export const IMAGES = {
    eye : require('./../assets/eye.png'),
-   check: require('./../assets/check-circle.png'),
+   check: require('./../assets/check.png'),
    close: require('./../assets/close.png'),
    emailSend: require('./../assets/email.png')
 }
