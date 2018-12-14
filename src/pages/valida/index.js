@@ -34,6 +34,8 @@ import Modal from "react-native-modal";
             this.props.navigation.navigate('Check', {
               email: email,
               password: password
+              // email: "elton.rafaelmelo@gmail.com",
+              // password: "bynd"
             })
           }         
 
@@ -42,8 +44,10 @@ import Modal from "react-native-modal";
     
     const plate = this.state.letter.toUpperCase() + "-" + this.state.number
    
+   console.log('email - ' + email + ' - senha - ' + password + ' - placa - ' + plate)
 
     this.props.doValidaRequest(email, password, plate);  
+    // this.props.doValidaRequest("elton.rafaelmelo@gmail.com", "bynd", "QNG-1467");  
 
     
   }

@@ -28,6 +28,7 @@ class Login extends Component {
         error: false,
         isModalVisible: false,
         showPassword: true,
+        erroLogin:''
       }
 
   static navigationOptions = {
@@ -38,19 +39,56 @@ class Login extends Component {
 
   navigateToValida = () => {
 
-    this.setState({ autenticated: true});
+    // this.setState({ autenticated: true});
 
-    if(this.props.auth){
-      if(this.state.autenticated == true){
+    // if(this.props.auth){
+      if(this.state.autenticated === true){
+        console.log('chama tela verifica')
+        // if(this.props.login_success){
         this.props.navigation.navigate('Valida', {
           email: this.state.email,
           password: this.state.password
         })
-      }
+      // }
     }      
   }
 
+  componentWillMount() {
+        console.log('componentWillMount')
+        this.navigateToValida();
+    }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps ' + nextProps.auth.login_success)
+    this.callNextScreen(nextProps.auth.login_success)
+      // if (nextProps.auth.login_success === true) {
+      //     console.log('efetua login ' + this.state.autenticated)
+      //     this.setState({ autenticated: true});
+      //     this.navigateToValida();
+      //     this.navigateToValida();
+      // } else {
+      //   console.log('erro login ')
+      //   this.setState({ autenticated: false});
+        
+      // }
+    }
+
+  callNextScreen(login) {
+    // this.state.autenticated = false
+      if (login === true && this.state.autenticated === false) {
+          console.log('efetua login autenticated ' + this.state.autenticated)
+          this.state.autenticated = true
+          console.log('efetua login autenticated ' + this.state.autenticated)
+          this.navigateToValida();
+      } else {
+        console.log('erro login ')
+        this.state.autenticated = false
+        
+      }
+  }
+
   componentDidMount(){
+    console.log('componentDidMount')
      this.navigateToValida();
   }
 
@@ -58,10 +96,10 @@ class Login extends Component {
     this.setState({ showPassword: !this.state.showPassword });
   }
 
-  doLogin = () => {
+  doLogin = () => {//2APLf9bbfYxgTYMZPm3
+    // this.state.autenticated = false
+    console.log('email - ' + this.state.email + ' - senha - ' + this.state.password)
     this.props.doAuthRequest(this.state.email, this.state.password); 
-
-     
   }
 
   showButtom = () => {
@@ -69,7 +107,7 @@ class Login extends Component {
       return (
         <TouchableOpacity style={styles.buttom} onPress={ () => {
           this.doLogin();
-          this.navigateToValida();
+          // this.navigateToValida();
         
         }}>
           <Text style={styles.txtButtom}>{txtButton}</Text>
@@ -132,7 +170,9 @@ class Login extends Component {
     )
   }
 }
+
 const mapStateToProps = state => {
+  console.log('mapStateToProps ' + state.auth.login_success)
   return {
     auth: state.auth
   }

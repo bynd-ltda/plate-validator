@@ -4,16 +4,26 @@ export const Types = {
     AUTH_FAILURE: 'auth/AUTH_FAILURE',
 };
 
-const initialState = []
+const initialState = {
+    message: '',
+    login_success: false
+}
 
 export default function auth( state = initialState, action) {
     switch(action.type){
         case Types.AUTH_REQUEST :
-           return [ ...state ];
+           return { ...state };
         case Types.AUTH_SUCCESS :
-           return [ ...state, action.payload.data];
+            // console.log('login sucesso ' + action)
+            // console.log('AUTH_SUCCESS ' + state)
+           // return [ ...state, action.payload.data];
+           return { ...state, message: 'kkkkkkk', login_success: true};
+           // return [ ...state, login_success: true];
         case Types.AUTH_FAILURE :
-           return [ ...state, action.payload.message];   
+            // console.log('AUTH_FAILURE ' + state)
+            // console.log('AUTH_FAILURE ' + state)
+           return { ...state, message: 'bbbbbbb', login_success: false};
+           // return [ ...state,  login_success: true];   
         default:
            return state;
     }
@@ -27,16 +37,22 @@ export const Creators = {
             password: password,
         }
     }),
-    doAuthSuccess : data => ({
+    // doAuthSuccess : data => ({
+        doAuthSuccess : (message, login_success) => ({
         type: Types.AUTH_SUCCESS,
+        // payload: {
+        //     data
+        // }
         payload: {
-            data
+            message: message,
+            login_success: login_success
         }
     }),
-    doAuthError : message => ({
+    doAuthError : (message, login_success) => ({
         type: Types.AUTH_FAILURE,
         payload: {
-            message
+            message: message,
+            login_success: login_success
         }
     })
 }

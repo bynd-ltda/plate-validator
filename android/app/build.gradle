@@ -97,6 +97,15 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
+    signingConfigs {
+        config {
+            keyAlias 'publish'
+            keyPassword 'bynd2018'
+            storePassword 'bynd2018'
+            storeFile file('../cer/android_studio_keystore.jks')
+        }
+    }
+
     defaultConfig {
         applicationId "com.bind"
         minSdkVersion rootProject.ext.minSdkVersion
