@@ -44,6 +44,10 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
       }      
 
   showButtom = () => {
+    console.log('Tela resultado: ' + this.props.data.data.status)
+    console.log('Tela resultado: ' + this.props.data.data.plate)
+    console.log('Tela resultado: ' + this.props.data.data.ride_schedule)
+    console.log('Tela resultado: ' + this.props.data.data.parking_lot)
         if(this.props.data.data.status !== 'invalid'){
           return (
             <TouchableOpacity style={styles.buttom} onPress={ () => {

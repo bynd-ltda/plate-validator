@@ -87,6 +87,13 @@ const styles = StyleSheet.create({
    },
    count:{
        marginLeft: '90%'
+   },
+   errorLoring: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: colors.red,
+      fontSize: 12,
+      marginTop: 10
    }
 
 })

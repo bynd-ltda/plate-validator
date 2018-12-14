@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, Image} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, Image, Keyboard} from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -43,7 +43,7 @@ class Login extends Component {
 
     // if(this.props.auth){
       if(this.state.autenticated === true){
-        console.log('chama tela verifica')
+        // console.log('chama tela verifica')
         // if(this.props.login_success){
         this.props.navigation.navigate('Valida', {
           email: this.state.email,
@@ -54,42 +54,42 @@ class Login extends Component {
   }
 
   componentWillMount() {
-        console.log('componentWillMount')
+        // console.log('componentWillMount')
         this.navigateToValida();
     }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps ' + nextProps.auth.login_success)
+    // console.log('componentWillReceiveProps ' + nextProps.auth.login_success)
+    console.log('erro login1: ' + nextProps.auth.message)
+    console.log('erro login2: ' + nextProps.auth)
+    console.log('erro login3: ' + nextProps)
+    this.state.erroLogin = nextProps.auth.message;
     this.callNextScreen(nextProps.auth.login_success)
-      // if (nextProps.auth.login_success === true) {
-      //     console.log('efetua login ' + this.state.autenticated)
-      //     this.setState({ autenticated: true});
-      //     this.navigateToValida();
-      //     this.navigateToValida();
-      // } else {
-      //   console.log('erro login ')
-      //   this.setState({ autenticated: false});
-        
-      // }
     }
 
   callNextScreen(login) {
     // this.state.autenticated = false
       if (login === true && this.state.autenticated === false) {
-          console.log('efetua login autenticated ' + this.state.autenticated)
+          // console.log('efetua login autenticated ' + this.state.autenticated)
           this.state.autenticated = true
-          console.log('efetua login autenticated ' + this.state.autenticated)
+          // console.log('efetua login autenticated ' + this.state.autenticated)
           this.navigateToValida();
       } else {
-        console.log('erro login ')
+        // console.log('erro login ')
         this.state.autenticated = false
         
       }
   }
 
   componentDidMount(){
-    console.log('componentDidMount')
-     this.navigateToValida();
+    // console.log('componentDidMount')
+
+    this.navigateToValida();
+  }
+
+  keyboardDidHide(){
+    this.setState({ erroLogin: ''});
+    Keyboard.dismiss(0);
   }
 
   showPassword = () => {
@@ -98,7 +98,7 @@ class Login extends Component {
 
   doLogin = () => {//2APLf9bbfYxgTYMZPm3
     // this.state.autenticated = false
-    console.log('email - ' + this.state.email + ' - senha - ' + this.state.password)
+    // console.log('email - ' + this.state.email + ' - senha - ' + this.state.password)
     this.props.doAuthRequest(this.state.email, this.state.password); 
   }
 
@@ -106,6 +106,7 @@ class Login extends Component {
     if(this.state.email && this.state.password != ''){
       return (
         <TouchableOpacity style={styles.buttom} onPress={ () => {
+          this.keyboardDidHide();
           this.doLogin();
           // this.navigateToValida();
         
@@ -157,7 +158,10 @@ class Login extends Component {
                      <Image style={styles.eye} source={eye} />
                   </TouchableOpacity>
                 </View>
-                <Text style={styles.count}>{this.state.password.length}/20</Text>
+                <View>
+                  <Text style={styles.errorLoring}>{this.state.erroLogin}</Text>
+                </View>
+                {/*<Text style={styles.count}>{this.state.password.length}/20</Text>*/}
                 
                {
                  this.showButtom()
@@ -172,7 +176,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('mapStateToProps ' + state.auth.login_success)
+  // console.log('mapStateToProps ' + state.auth.message)
   return {
     auth: state.auth
   }

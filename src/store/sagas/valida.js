@@ -8,22 +8,26 @@ export function* doValidaRequest(action) {
 
     const { email, password, plate } = action.payload;
 
-    console.log('verificar placa: ' + plate + 'senha: ' + password + 'email: ' + email);
+    console.log(' verificar placa: ' + plate + ' senha: ' + password + ' email: ' + email);
     try {
 
-    // const response = yield call(apiTeste.get, `/pvl/validate?plate=${plate}`, {
-        const response = yield call(apiTeste.get, `/pvl/validate?plate=ddd-2222`, {
+    const response = yield call(apiTeste.get, `/pvl/validate?plate=${plate}`, {
+        // const response = yield call(apiTeste.get, `/pvl/validate?plate=ddd-2222`, {
         auth: {
             username: email,
-            password: password,
+            // password: password,//2APLf9bbfYxgTYMZPm3
+            password: '2APLf9bbfYxgTYMZPm3',//
         }
         
     } )
+
+        // console.log('Pesquisa placa: ' + response);
     if(response) {
-        console.log(response.data.data);
+        console.log('Sucesso pesquisa placa: ' + response.data.data);
         yield put(ValidaActions.doValidaSuccess(response.data.data));
         
     } else {
+        console.log('Sucesso mais com erro');
         yield put(ValidaActions.doValidaError('Dados nao encontrado'));
     }
 
