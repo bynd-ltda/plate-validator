@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 
-import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, Image, Keyboard} from 'react-native';
+import { 
+  View, 
+  Text, 
+  TextInput, 
+  TouchableOpacity, 
+  StatusBar, 
+  SafeAreaView, 
+  Image, 
+  Keyboard,
+  ActivityIndicator
+} from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -28,7 +38,8 @@ class Login extends Component {
         error: false,
         isModalVisible: false,
         showPassword: true,
-        erroLogin:''
+        erroLogin:'',
+        isLoading: false
       }
 
   static navigationOptions = {
@@ -43,7 +54,6 @@ class Login extends Component {
 
     // if(this.props.auth){
       if(this.state.autenticated === true){
-        // console.log('chama tela verifica')
         // if(this.props.login_success){
         this.props.navigation.navigate('Valida', {
           email: this.state.email,
@@ -72,10 +82,12 @@ class Login extends Component {
       if (login === true && this.state.autenticated === false) {
           // console.log('efetua login autenticated ' + this.state.autenticated)
           this.state.autenticated = true
+          this.state.isLoading = false
           // console.log('efetua login autenticated ' + this.state.autenticated)
           this.navigateToValida();
       } else {
         // console.log('erro login ')
+        this.state.isLoading = false
         this.state.autenticated = false
         
       }
@@ -83,7 +95,6 @@ class Login extends Component {
 
   componentDidMount(){
     // console.log('componentDidMount')
-
     this.navigateToValida();
   }
 
@@ -97,7 +108,6 @@ class Login extends Component {
   }
 
   doLogin = () => {//2APLf9bbfYxgTYMZPm3
-    // this.state.autenticated = false
     // console.log('email - ' + this.state.email + ' - senha - ' + this.state.password)
     this.props.doAuthRequest(this.state.email, this.state.password); 
   }
@@ -106,6 +116,10 @@ class Login extends Component {
     if(this.state.email && this.state.password != ''){
       return (
         <TouchableOpacity style={styles.buttom} onPress={ () => {
+          console.log('carregando: ' + this.state.isLoading)
+          this.state.isLoading = true
+          console.log('terminou de carregar: ' + this.state.isLoading)
+          this.showLoading();
           this.keyboardDidHide();
           this.doLogin();
           // this.navigateToValida();
@@ -123,6 +137,18 @@ class Login extends Component {
         </View>
       )
     }
+  }
+
+  showLoading = () => {
+
+    if (this.state.isLoading == true) {
+      return (
+             <View>
+                <ActivityIndicator size="small" color="#00ff00" />
+              </View>
+      )
+    }
+    
   }
 
 
@@ -161,6 +187,11 @@ class Login extends Component {
                 <View>
                   <Text style={styles.errorLoring}>{this.state.erroLogin}</Text>
                 </View>
+
+                {
+                  this.showLoading()
+                }
+                
                 {/*<Text style={styles.count}>{this.state.password.length}/20</Text>*/}
                 
                {
