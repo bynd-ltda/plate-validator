@@ -23,7 +23,7 @@ export function* doValidaRequest(action) {
 
         // console.log('Pesquisa placa: ' + response);
     if(response) {
-        console.log('Sucesso pesquisa placa: ' + response.data.data);
+        // console.log('Sucesso pesquisa placa: ' + response.data.data);
         yield put(ValidaActions.doValidaSuccess(response.data.data));
         
     } else {

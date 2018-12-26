@@ -14,16 +14,9 @@ export default function auth( state = initialState, action) {
         case Types.AUTH_REQUEST :
            return { ...state };
         case Types.AUTH_SUCCESS :
-            // console.log('login sucesso ' + action)
-            // console.log('AUTH_SUCCESS ' + state)
-           // return [ ...state, action.payload.data];
            return { ...state, message: action.payload.message, login_success: true};
-           // return [ ...state, login_success: true];
         case Types.AUTH_FAILURE :
-            // console.log('AUTH_FAILURE ' + state)
-            // console.log('AUTH_FAILURE ' + state)
            return { ...state, message: action.payload.message, login_success: false};
-           // return [ ...state,  login_success: true];   
         default:
            return state;
     }

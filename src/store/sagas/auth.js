@@ -24,12 +24,7 @@ export function* doAuthRequest(action) {
         console.log(response);
         yield put(AuthActions.doAuthError('Usuario nao encontrado'));
         // yield put(AuthActions.doAuthError('AUTH_FAILURE'));
-    }
-
-    
-    
-
-    
+    } 
 } catch (err){
     yield put(AuthActions.doAuthError('Algum problema foi identificado no servidor.'));
     console.log('erro: ' + err);
