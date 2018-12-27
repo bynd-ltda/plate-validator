@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, ActivityIndicator,Button, HeaderRight } from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -18,7 +18,7 @@ class Valida extends Component {
   constructor(props) {
     super(props);
     console.disableYellowBox = true
-
+    console.log('passou aqui');
 
   }
 
@@ -29,6 +29,31 @@ class Valida extends Component {
     showPassword: true,
     plateCar: '',
     verificaSucesso: false,
+  }
+
+  static navigationOptions = ({navigation}) => {
+
+    const {params = {}} = navigation.state;
+
+    return {
+      headerRight: (
+        <Button
+          onPress = {() => params.handleSave()}
+          title="Sair"
+          color="#000000"
+        />
+      ),
+      headerLeft: null,
+      title: 'Validação',
+    }
+    
+  };
+
+  navigateToExit = () =>{
+      this.props.navigation.navigate('Login', {
+        email: '',
+        password: ''
+      })
   }
 
   navigateToCheck = () => {
@@ -50,8 +75,6 @@ class Valida extends Component {
 
     this.state.plateCar = plate;
 
-    // console.log('email - ' + email + ' - senha - ' + password + ' - placa - ' + plate)
-
     this.props.doValidaRequest(email, password, plate);
   }
 
@@ -62,19 +85,23 @@ class Valida extends Component {
     }
   }
 
+  // saveDetails = () => {
+  //   alert('Save Details');
+  // }
+
   componentDidMount() {
-    // this.navigateToCheck();
-    // this.callNextScreen
+    this.props.navigation.setParams({handleSave: this.navigateToExit.bind()});
   }
 
   callNextScreen(validar) {
 
     if (validar > 0 && this.state.verificaSucesso === false) {
+      this.state.letter = ''
+      this.state.number = ''
       this.state.verificaSucesso = true
       this.navigateToCheck();
     } else {
       this.state.verificaSucesso = false
-
     }
   }
 

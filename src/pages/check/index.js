@@ -19,35 +19,37 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
     constructor(props){
         super(props);
         console.disableYellowBox=true
-        
-       
+        const { email, password, plate } = this.props.navigation.state.params;
+        // console.log('placa: ' + plate)
       }
+
       static navigationOptions = {
         header: null
       };    
    
   navigateToValida = () => {
     const { email, password } = this.props.navigation.state.params;
-    console.log(email)
+    // console.log(email)
         this.props.navigation.navigate('Valida', {
           email: email,
           password: password
         })
       } 
   navigateToReport = () => {
-        const { email, password } = this.props.navigation.state.params;
-        console.log(email)
+        const { email, password, plate } = this.props.navigation.state.params;
+        console.log('placa carro: ' + plate)
         this.props.navigation.navigate('Report', {
           email: email,
-          password: password
+          password: password,
+          plate: plate
         });
       }      
 
   showButtom = () => {
-    console.log('Tela resultado: ' + this.props.data.data.status)
-    console.log('Tela resultado: ' + this.props.data.data.plate)
-    console.log('Tela resultado: ' + this.props.data.data.ride_schedule)
-    console.log('Tela resultado: ' + this.props.data.data.parking_lot)
+    // console.log('Tela resultado: ' + this.props.data.data.status)
+    // console.log('Tela resultado: ' + this.props.data.data.plate)
+    // console.log('Tela resultado: ' + this.props.data.data.ride_schedule)
+    // console.log('Tela resultado: ' + this.props.data.data.parking_lot)
         if(this.props.data.data.status !== 'invalid'){
           return (
             <TouchableOpacity style={styles.buttom} onPress={ () => {
@@ -66,12 +68,12 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
             }}>
               <Text style={styles.txtButtomV}>{txtButtonValidaother}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttomV} onPress={ () => {
+            {/* <TouchableOpacity style={styles.buttomV} onPress={ () => {
               this.navigateToReport();
             
             }}>
               <Text style={styles.txtButtomV}>{reportUser}</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
               
             </View>
           )

@@ -17,7 +17,7 @@ const createNavigator = () => StackNavigator({
     
   },{
     // initialRouteName:  'Valida',
-    initialRouteName:  'Login',
+    initialRouteName:   'Login',
     navigationOptions: {
       headerStyle: {
         backgroundColor: colors.primary,
