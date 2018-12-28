@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import { Text, Platform } from 'react-native';
@@ -16,8 +17,7 @@ const createNavigator = () => StackNavigator({
     Report: { screen: Report},
     
   },{
-    initialRouteName:  'Valida',
-    // initialRouteName:   'Login',
+    initialRouteName:   'Login',
     navigationOptions: {
       headerStyle: {
         backgroundColor: colors.primary,

@@ -43,12 +43,13 @@ class Report extends Component {
     console.log('senha: ' + password)
     console.log('placa: ' + plate)
     this.props.doReportRequest(email, password, plate);
+    // this.props.doReportRequest('elton.rafaelmelo@gmail.com', 'bynd', 'aaa-2211');
   }
 
   navigateToValida = () => {
     this.doReport();
     const { email, password } = this.props.navigation.state.params;
-    // console.log(email)
+    console.log(email)
     this.props.navigation.navigate('Valida', {
       email: email,
       password: password

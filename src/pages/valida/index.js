@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, ActivityIndicator,Button, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, ActivityIndicator,Button, Alert,AsyncStorage } from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -18,8 +18,6 @@ class Valida extends Component {
   constructor(props) {
     super(props);
     console.disableYellowBox = true
-    console.log('passou aqui');
-
   }
 
   state = {
@@ -44,13 +42,15 @@ class Valida extends Component {
         />
       ),
       headerLeft: null,
-      headerRight: null,
       title: 'Validação',
     }
     
   };
 
   navigateToExit = () =>{
+      //  AsyncStorage.removeItem('email_key');
+      //  AsyncStorage.removeItem('senha_key');
+      AsyncStorage.setItem('senha_key', '');
       this.props.navigation.navigate('Login', {
         email: '',
         password: ''
@@ -100,10 +100,6 @@ class Valida extends Component {
       this.callNextScreen(nextProps.data.data.status.length)
     }
   }
-
-  // saveDetails = () => {
-  //   alert('Save Details');
-  // }
 
   componentDidMount() {
     this.props.navigation.setParams({handleSave: this.navigateToExit.bind()});

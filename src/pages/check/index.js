@@ -68,12 +68,12 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
             }}>
               <Text style={styles.txtButtomV}>{txtButtonValidaother}</Text>
             </TouchableOpacity>
-            {/* <TouchableOpacity style={styles.buttomV} onPress={ () => {
+            <TouchableOpacity style={styles.buttomV} onPress={ () => {
               this.navigateToReport();
             
             }}>
               <Text style={styles.txtButtomV}>{reportUser}</Text>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
               
             </View>
           )

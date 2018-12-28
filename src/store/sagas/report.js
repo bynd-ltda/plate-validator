@@ -9,14 +9,21 @@ export function* doReportRequest(action) {
 
     console.log('email: ' + email + ' , senha: ' + password + ' , placa: ' + plate);
 
+    let body = {
+        plate: plate
+    };
+
     try {
-        const response = yield call(api.post, `/pvl/report?plate=${plate}`, {
-        // const response = yield call(api.post, `/pvl/report?plate=bbb-4433`, {
+        // const response = yield call(api.post, `/pvl/report?plate=${plate}`, {
+        const response = yield call(api.post, `/pvl/report`,JSON.stringify(body), {
             auth: {
                 // username: email,
                 // password: password
                 username: 'elton.rafaelmelo@gmail.com',
-                password: '2APLf9bbfYxgTYMZPm3'
+                password: '2APLf9bbfYxgTYMZPm3',//2APLf9bbfYxgTYMZPm3
+            },
+            headers : {
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
 
