@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, ActivityIndicator,Button, HeaderRight } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, ActivityIndicator,Button, Alert } from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -44,6 +44,7 @@ class Valida extends Component {
         />
       ),
       headerLeft: null,
+      headerRight: null,
       title: 'Validação',
     }
     
@@ -69,13 +70,28 @@ class Valida extends Component {
   }
 
   doValida = () => {
-    const { email, password } = this.props.navigation.state.params;
 
-    const plate = this.state.letter.toUpperCase() + "-" + this.state.number
+    if (this.state.letter.length > 0 && this.state.number.length > 0) {
+      const { email, password } = this.props.navigation.state.params;
 
-    this.state.plateCar = plate;
+      const plate = this.state.letter.toUpperCase() + "-" + this.state.number
+  
+      this.state.plateCar = plate;
+  
+      this.props.doValidaRequest(email, password, plate);
+    } else {
+      // alert('Atenção','Preencha todos os campos');
+      Alert.alert(
+        'Atenção',
+        'Preencha todos os campos',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false }
+      )
+    }
 
-    this.props.doValidaRequest(email, password, plate);
+    
   }
 
   componentWillReceiveProps(nextProps) {

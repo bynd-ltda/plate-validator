@@ -14,9 +14,10 @@ export function* doValidaRequest(action) {
     const response = yield call(apiTeste.get, `/pvl/validate?plate=${plate}`, {
         // const response = yield call(apiTeste.get, `/pvl/validate?plate=ddd-2222`, {
         auth: {
-            username: email,
-            password: password,//2APLf9bbfYxgTYMZPm3
-            // password: '2APLf9bbfYxgTYMZPm3',//
+            // username: email,
+            username: "abraao@urbbox.com.br",
+            // password: password,//2APLf9bbfYxgTYMZPm3
+            password: '2APLf9bbfYxgTYMZPm3',//
         }
         
     } )
