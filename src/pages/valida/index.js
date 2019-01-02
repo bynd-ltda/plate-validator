@@ -153,6 +153,7 @@ class Valida extends Component {
               value={this.state.letter}
 
             />
+            
             <TextInput
               style={this.state.number === '' ? styles.txtInputNumberRed : styles.txtInputNumberYelow}
               ref={(input) => { this.secondTextInput = input; }}
