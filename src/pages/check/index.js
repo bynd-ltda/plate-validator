@@ -19,8 +19,6 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
     constructor(props){
         super(props);
         console.disableYellowBox=true
-        const { email, password, plate } = this.props.navigation.state.params;
-        // console.log('placa: ' + plate)
       }
 
       static navigationOptions = {
@@ -37,7 +35,7 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
       } 
   navigateToReport = () => {
         const { email, password, plate } = this.props.navigation.state.params;
-        console.log('placa carro: ' + plate)
+        // console.log('placa carro: ' + plate)
         this.props.navigation.navigate('Report', {
           email: email,
           password: password,

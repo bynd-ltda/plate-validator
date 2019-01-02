@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
    txtInputNumberRed:{
     color: colors.black,
     fontSize: 40,
-    width: 170,
+    width: 210,
     borderBottomWidth: 1,
     borderColor: colors.red,
     marginTop: metrics.baseMargin * 2
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
    txtInputNumberYelow:{
     color: colors.black,
     fontSize: 40,
-    width: 170,
+    width: 210,
     borderBottomWidth: 1,
     borderColor: colors.yelow,
     marginTop: metrics.baseMargin * 2
@@ -93,6 +93,10 @@ const styles = StyleSheet.create({
        alignItems: 'stretch',
        flexDirection:'row'
    },
+   firstSection2: {
+    justifyContent:'center',
+    alignItems: 'center'
+  },
    count:{
        marginLeft: '90%'
    }

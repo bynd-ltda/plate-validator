@@ -16,7 +16,7 @@ export function* doAuthRequest(action) {
         })
 
         if (response) {
-            // console.log(response);
+            console.log(response);
             // yield put(AuthActions.doAuthSuccess(response.data));
             yield put(AuthActions.doAuthSuccess(' '));
 

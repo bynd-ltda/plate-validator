@@ -19,7 +19,7 @@ export function* doReportRequest(action) {
             auth: {
                 // username: email,
                 // password: password
-                username: 'elton.rafaelmelo@gmail.com',
+                username: "abraao@urbbox.com.br",
                 password: '2APLf9bbfYxgTYMZPm3',//2APLf9bbfYxgTYMZPm3
             },
             headers : {

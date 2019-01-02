@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, ActivityIndicator,Button, Alert,AsyncStorage } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, ActivityIndicator, Button, Alert, AsyncStorage } from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,6 +11,9 @@ import styles from './styles';
 import { KEYS } from './../../Constants';
 
 import Modal from "react-native-modal";
+
+import { TextInputMask } from 'react-native-masked-text'
+
 
 
 class Valida extends Component {
@@ -29,14 +32,14 @@ class Valida extends Component {
     verificaSucesso: false,
   }
 
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = ({ navigation }) => {
 
-    const {params = {}} = navigation.state;
+    const { params = {} } = navigation.state;
 
     return {
       headerRight: (
         <Button
-          onPress = {() => params.handleSave()}
+          onPress={() => params.handleSave()}
           title="Sair"
           color="#000000"
         />
@@ -44,17 +47,17 @@ class Valida extends Component {
       headerLeft: null,
       title: 'Validação',
     }
-    
+
   };
 
-  navigateToExit = () =>{
-      //  AsyncStorage.removeItem('email_key');
-      //  AsyncStorage.removeItem('senha_key');
-      AsyncStorage.setItem('senha_key', '');
-      this.props.navigation.navigate('Login', {
-        email: '',
-        password: ''
-      })
+  navigateToExit = () => {
+    //  AsyncStorage.removeItem('email_key');
+    //  AsyncStorage.removeItem('senha_key');
+    AsyncStorage.setItem('senha_key', '');
+    this.props.navigation.navigate('Login', {
+      email: '',
+      password: ''
+    })
   }
 
   navigateToCheck = () => {
@@ -71,13 +74,13 @@ class Valida extends Component {
 
   doValida = () => {
 
-    if (this.state.letter.length > 0 && this.state.number.length > 0) {
+    if (this.state.letter.length > 0 ) {
       const { email, password } = this.props.navigation.state.params;
 
-      const plate = this.state.letter.toUpperCase() + "-" + this.state.number
-  
+      const plate = this.state.letter.toUpperCase()// + "-" + this.state.number
+
       this.state.plateCar = plate;
-  
+
       this.props.doValidaRequest(email, password, plate);
     } else {
       // alert('Atenção','Preencha todos os campos');
@@ -85,24 +88,26 @@ class Valida extends Component {
         'Atenção',
         'Preencha todos os campos',
         [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
         ],
         { cancelable: false }
       )
     }
 
-    
+
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(' resultado verifica 2: ' + nextProps.data.data.status.length);
+    // console.log(' resultado verifica 2: ' + nextProps.data.data.status.length);
     if (nextProps.data.data.status.length > 0) {
       this.callNextScreen(nextProps.data.data.status.length)
     }
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({handleSave: this.navigateToExit.bind()});
+    this.props.navigation.setParams({ handleSave: this.navigateToExit.bind() });
+    // let valid = this.myDateText.isValid();
+    // let rawValue = this.myDateText.getRawValue();
   }
 
   callNextScreen(validar) {
@@ -117,6 +122,10 @@ class Valida extends Component {
     }
   }
 
+  onChangeText(text) {
+    // ...
+  }
+
 
   render() {
 
@@ -127,8 +136,8 @@ class Valida extends Component {
         <StatusBar barStyle="light-content" />
         <Text style={styles.login}>{title}</Text>
         <View style={styles.form}>
-          <View style={styles.firstSection}>
-            <TextInput
+          <View style={styles.firstSection2}>
+            {/* <TextInput
               style={this.state.letter === '' ? styles.txtInputLetterRed : styles.txtInputLetterYelow}
               autoCapitalize="characters"
               autoCorrect={false}
@@ -153,9 +162,32 @@ class Valida extends Component {
               keyboardType="numeric"
               onChangeText={number => this.setState({ number })}
               value={this.state.number}
+            /> */}
+
+            <TextInputMask
+            textAlign={'center'}
+            	placeholder="XXX-0000"
+              // returnKeyType={"next"}
+              autoCapitalize="characters"
+              autoCorrect={false}
+              autoFocus={true}
+              maxLength={8}
+              style={this.state.number === '' ? styles.txtInputNumberRed : styles.txtInputNumberYelow}
+              ref={(input) => { this.secondTextInput2 = input; }}
+              type={'custom'}
+              options={{
+                mask: 'AAA-9999'
+              }}
+              onChangeText={letter => {
+                this.setState({ letter: letter })
+              }}
+              value={this.state.letter}
             />
 
           </View>
+
+
+
           <TouchableOpacity style={styles.buttom} onPress={() => {
             this.doValida();
             // this.navigateToCheck();
@@ -170,21 +202,12 @@ class Valida extends Component {
 }
 
 const mapStateToProps = state => {
-
-  // console.log('teste: ' + state)
-  // console.log('teste valida: ' + state.valida.data.status)
   return (
     {
       data: state.valida
     }
   );
 }
-
-// const mapStateToProps = state => ({
-
-//   data: state.valida,
-
-// });
 
 const mapDispatchToProps = dispatch => bindActionCreators(ValidaActions, dispatch);
 
