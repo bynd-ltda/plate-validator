@@ -56,7 +56,7 @@ export default class App extends Component {
           <View ></View>
         </Provider>
       );
-    } else if (this.state.screen === 'bynd') {
+    } else if (this.state.screen !== '') {
       return (
         <Provider store={store}>
           <Routes2 />

@@ -43,7 +43,7 @@ class Valida extends Component {
         <Button
           onPress={() => params.handleSave()}
           title="Sair"
-          color="#000000"
+          color="#cc092c"
         />
       ),
       headerLeft: null,

@@ -55,7 +55,7 @@ class Login extends Component {
 
     if (this.state.autenticated === true) {
       this.salvarLogin();
-      this.recuperarSenha();
+      // this.recuperarSenha();
 
       this.props.navigation.navigate('Valida', {
         email: this.state.email,
@@ -69,10 +69,6 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log('componentWillReceiveProps ' + nextProps.auth.login_success)
-    // console.log('erro login1: ' + nextProps.auth.message)
-    // console.log('erro login2: ' + nextProps.auth)
-    // console.log('erro login3: ' + nextProps)
     this.state.erroLogin = nextProps.auth.message;
     this.callNextScreen(nextProps.auth.login_success)
   }
@@ -93,27 +89,30 @@ class Login extends Component {
   }
 
   salvarLogin = async () => {
-      try {
-        await AsyncStorage.setItem('email_key', this.state.email);
-        await AsyncStorage.setItem('senha_key', this.state.password);
-        console.log('salvo com sucesso');
-      } catch (error) {
-        console.log('erro ao salva: ' + error);
-      }
+    try {
+      await AsyncStorage.setItem('email_key', this.state.email);
+      await AsyncStorage.setItem('senha_key', this.state.password);
+      // await AsyncStorage.setItem('tela_inicial', 'Valida');
+      
+      console.log('salvo com sucesso');
+    } catch (error) {
+      // await AsyncStorage.setItem('tela_inicial', 'Login');
+      console.log('erro ao salva: ' + error);
+    }
   }
 
   recuperarSenha = async () => {
-      try {
-        const value = await AsyncStorage.getItem('email_key');
-        const value2 = await AsyncStorage.getItem('senha_key');
-        if (value !== null) {
-          console.log(value + ' ' + value2);
-        } else {
-          console.log('não achou nada');
-        }
-       } catch (error) {
-         console.log('erro ao recuperar email: ' + error);
-       }
+    try {
+      const value = await AsyncStorage.getItem('email_key');
+      const value2 = await AsyncStorage.getItem('senha_key');
+      if (value !== null) {
+        console.log(value + ' ' + value2);
+      } else {
+        console.log('não achou nada');
+      }
+    } catch (error) {
+      console.log('erro ao recuperar email: ' + error);
+    }
   }
 
   componentDidMount() {

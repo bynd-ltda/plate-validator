@@ -44,10 +44,10 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
       }      
 
   showButtom = () => {
-    // console.log('Tela resultado: ' + this.props.data.data.status)
-    // console.log('Tela resultado: ' + this.props.data.data.plate)
-    // console.log('Tela resultado: ' + this.props.data.data.ride_schedule)
-    // console.log('Tela resultado: ' + this.props.data.data.parking_lot)
+    console.log('Tela resultado1: ' + this.props.data.data.status)
+    console.log('Tela resultado2: ' + this.props.data.data.plate)
+    console.log('Tela resultado3: ' + this.props.data.data.ride_schedule)
+    console.log('Tela resultado4: ' + this.props.data.data.parking_lot)
         if(this.props.data.data.status !== 'invalid'){
           return (
             <TouchableOpacity style={styles.buttom} onPress={ () => {
@@ -103,6 +103,7 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
             <Text style={styles.txtValid}>Carrro não autorizado </Text>
           </View>
         }
+        <Text style={styles.txtSchedule}>Placa: {this.props.data.data.plate}</Text>
         <Text style={styles.txtSchedule}>Carona: {this.props.data.data.ride_schedule}</Text>
         <Text style={styles.txtBolsao}>Bolsao: {this.props.data.data.parking_lot}</Text>
         {

@@ -73,15 +73,6 @@ class Report extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   // console.log('teste report: ' + state.report.report_success)
-//   return (
-//     {
-//       data: state.report
-//     }
-//   );
-// }
-
 const mapStateToProps = state => {
   // console.log('mapStateToProps ' + state.auth.message)
   return {
