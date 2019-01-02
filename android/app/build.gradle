@@ -102,16 +102,20 @@ android {
 
     signingConfigs {
         config {
-            keyAlias 'publish'
-            keyPassword 'bynd2018'
-            storePassword 'bynd2018'
-            storeFile file('android_studio_keystore.jks')
+//            keyAlias 'publish'
+//            keyPassword 'bynd2018'
+//            storePassword 'bynd2018'
+//            storeFile file('android_studio_keystore.jks')
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
         }
     }
 
     buildTypes {
         debug {
-            debuggable true
+            debuggable false
         }
         release {
             minifyEnabled false
