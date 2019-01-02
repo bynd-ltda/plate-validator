@@ -21,6 +21,7 @@ class Valida extends Component {
   constructor(props) {
     super(props);
     console.disableYellowBox = true
+    this.getEmail();
   }
 
   state = {
@@ -30,6 +31,7 @@ class Valida extends Component {
     showPassword: true,
     plateCar: '',
     verificaSucesso: false,
+    emailUser: ''
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -61,27 +63,39 @@ class Valida extends Component {
   }
 
   navigateToCheck = () => {
-
+    console.log('email para rest: ' + this.state.emailUser);
     if (this.state.verificaSucesso === true) {
-      const { email, password } = this.props.navigation.state.params;
+      const {  password } = this.props.navigation.state.params;
       this.props.navigation.navigate('Check', {
-        email: email,
+        email: this.state.emailUser === '' ? 'abraao@urbbox.com.br': this.state.emailUser,
         password: password,
         plate: this.state.plateCar,
       })
     }
   }
 
+  getEmail = async () => {
+    let email = '';
+    try {
+      email = await AsyncStorage.getItem('email_key');//senha_key//tela_inicial//email_key
+    } catch (error) {
+      console.log('catch: ' + error.message);
+    }
+    console.log('email recuperado: ' + email);
+    this.setState({ emailUser: useremailId});
+    return this.state.emailUser;
+  }
+
   doValida = () => {
 
     if (this.state.letter.length > 0 ) {
-      const { email, password } = this.props.navigation.state.params;
+      const { password } = this.props.navigation.state.params;
 
       const plate = this.state.letter.toUpperCase()// + "-" + this.state.number
 
       this.state.plateCar = plate;
 
-      this.props.doValidaRequest(email, password, plate);
+      this.props.doValidaRequest(this.state.emailUser, password, plate);
     } else {
       // alert('Atenção','Preencha todos os campos');
       Alert.alert(

@@ -7,13 +7,13 @@ export function* doValidaRequest(action) {
 
     const { email, password, plate } = action.payload;
 
-    // console.log(' verificar placa: ' + plate + ' senha: ' + password + ' email: ' + email);
+    console.log(' verificar placa: ' + plate + ' senha: ' + password + ' email: ' + email);
     try {
 
     const response = yield call(api.get, `/pvl/validate?plate=${plate}`, {
         auth: {
             // username: email,
-            username: "abraao@urbbox.com.br",
+            username: email === "" ? "abraao@urbbox.com.br" : email,
             // password: password,//2APLf9bbfYxgTYMZPm3
             password: '2APLf9bbfYxgTYMZPm3',//
         }
