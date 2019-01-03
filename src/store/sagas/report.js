@@ -9,21 +9,20 @@ export function* doReportRequest(action) {
 
     console.log('email: ' + email + ' , senha: ' + password + ' , placa: ' + plate);
 
-    let body = {
-        plate: plate
-    };
+    var querystring = require('querystring');
 
     try {
         // const response = yield call(api.post, `/pvl/report?plate=${plate}`, {
-        const response = yield call(api.post, `/pvl/report`,JSON.stringify(body), {
+           const response = yield call(api.post, `/pvl/report`,querystring.stringify({ plate: plate}),{
+        // const response = yield call(api.post, `/pvl/report`,JSON.stringify(body), {
             auth: {
-                username: email,
+                // username: email,
                 // password: password
-                // username: "abraao@urbbox.com.br",
+                username: "abraao@urbbox.com.br",
                 password: '2APLf9bbfYxgTYMZPm3',//2APLf9bbfYxgTYMZPm3
             },
             headers : {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',//text/html
             }
         })
 
