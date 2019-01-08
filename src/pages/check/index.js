@@ -27,6 +27,11 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
    
   navigateToValida = () => {
     const { email, password } = this.props.navigation.state.params;
+
+    this.props.data.data.plate = ''
+    this.props.data.data.ride_schedule = ''
+    this.props.data.data.parking_lot = ''
+    this.props.data.data.status = ''
     // console.log(email)
         this.props.navigation.navigate('Valida', {
           email: email,
@@ -36,6 +41,11 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
   navigateToReport = () => {
         const { email, password, plate } = this.props.navigation.state.params;
         // console.log('placa carro: ' + plate)
+        this.props.data.data.plate = ''
+        this.props.data.data.ride_schedule = ''
+        this.props.data.data.parking_lot = ''
+        this.props.data.data.status = ''
+        
         this.props.navigation.navigate('Report', {
           email: email,
           password: password,
@@ -95,17 +105,17 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
           this.props.data.data.status !== 'invalid'  ?
           <View>
             <Image style={styles.check} source={check} /> 
-            <Text style={styles.txtValid}>Carrro Valido</Text>
+            <Text style={styles.txtValid}>Carrro Válido</Text>
           </View>
           :
           <View>
             <Image style={styles.close} source={close} />
-            <Text style={styles.txtValid}>Carrro não autorizado </Text>
+            <Text style={styles.txtValid}>Carro não autorizado </Text>
           </View>
         }
         <Text style={styles.txtSchedule}>Placa: {this.props.data.data.plate}</Text>
         <Text style={styles.txtSchedule}>Carona: {this.props.data.data.ride_schedule}</Text>
-        <Text style={styles.txtBolsao}>Bolsao: {this.props.data.data.parking_lot}</Text>
+        <Text style={styles.txtBolsao}>Bolsão: {this.props.data.data.parking_lot}</Text>
         {
           this.props.data.data.status === '' ? null : this.showButtom()
         }

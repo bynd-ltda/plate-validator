@@ -61,7 +61,7 @@ class Report extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <Image style={styles.email} source={emailSend} />
-        <Text style={styles.txt}>Um email foi enviado para o setor responsavel</Text>
+        <Text style={styles.txt}>Um email foi enviado para o setor responsável</Text>
         <TouchableOpacity style={styles.buttom} onPress={() => {
           this.navigateToValida();
 

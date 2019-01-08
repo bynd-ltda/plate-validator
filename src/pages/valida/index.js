@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 
-import { View, Text, TextInput, TouchableOpacity, StatusBar, SafeAreaView, ActivityIndicator, Button, Alert, AsyncStorage } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StatusBar,
+  SafeAreaView,
+  ActivityIndicator,
+  Button,
+  Alert,
+  AsyncStorage,
+  Keyboard
+} from 'react-native';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -31,7 +43,8 @@ class Valida extends Component {
     showPassword: true,
     plateCar: '',
     verificaSucesso: false,
-    emailUser: ''
+    emailUser: '',
+    isLoading: false
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -40,11 +53,18 @@ class Valida extends Component {
 
     return {
       headerRight: (
-        <Button
-          onPress={() => params.handleSave()}
-          title="Sair"
-          color="#cc092c"
-        />
+        <TouchableOpacity  onPress={() => {
+          params.handleSave()
+        }}>
+        <Text style={styles.txtButtomSair}>
+          Sair
+        </Text>
+        </TouchableOpacity>
+        // <Button
+        //   onPress={() => params.handleSave()}
+        //   title="Sair"
+        //   color="#cc092c"
+        // />
       ),
       headerLeft: null,
       title: 'Validação',
@@ -65,9 +85,10 @@ class Valida extends Component {
   navigateToCheck = () => {
     console.log('email para rest: ' + this.state.emailUser);
     if (this.state.verificaSucesso === true) {
-      const {  password } = this.props.navigation.state.params;
+      this.state.verificaSucesso = false
+      const { password } = this.props.navigation.state.params;
       this.props.navigation.navigate('Check', {
-        email: this.state.emailUser === '' ? 'abraao@urbbox.com.br': this.state.emailUser,
+        email: this.state.emailUser === '' ? 'abraao@urbbox.com.br' : this.state.emailUser,
         password: password,
         plate: this.state.plateCar,
       })
@@ -82,13 +103,15 @@ class Valida extends Component {
       console.log('catch: ' + error.message);
     }
     console.log('email recuperado: ' + email);
-    this.setState({ emailUser: useremailId});
+    this.setState({ emailUser: useremailId });
     return this.state.emailUser;
   }
 
   doValida = () => {
 
-    if (this.state.letter.length > 0 ) {
+    console.log('digitado: ' + this.state.letter);
+
+    if (this.state.letter.length > 0) {
       const { password } = this.props.navigation.state.params;
 
       const plate = this.state.letter.toUpperCase()// + "-" + this.state.number
@@ -98,6 +121,8 @@ class Valida extends Component {
       this.props.doValidaRequest(this.state.emailUser, password, plate);
     } else {
       // alert('Atenção','Preencha todos os campos');
+      this.setState({ isLoading: false });
+
       Alert.alert(
         'Atenção',
         'Preencha todos os campos',
@@ -112,8 +137,13 @@ class Valida extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log(' resultado verifica 2: ' + nextProps.data.data.status.length);
+    // console.log(' resultado verifica 2: ' + nextProps.data.data.status);
+    console.log('carregar load 2')
+    
     if (nextProps.data.data.status.length > 0) {
+      this.setState({ isLoading: false });
+      console.log('carregar load 3')
+      console.log(' resultado verifica 2: ' + nextProps.data.data.status);
       this.callNextScreen(nextProps.data.data.status.length)
     }
   }
@@ -125,7 +155,7 @@ class Valida extends Component {
   }
 
   callNextScreen(validar) {
-
+    console.log(' callNextScreen 2: ' + this.state.verificaSucesso);
     if (validar > 0 && this.state.verificaSucesso === false) {
       this.state.letter = ''
       this.state.number = ''
@@ -140,6 +170,23 @@ class Valida extends Component {
     // ...
   }
 
+  keyboardDidHide() {
+    Keyboard.dismiss(0);
+  }
+
+  showLoading() {
+    console.log('carregar load')
+    if (this.state.isLoading == true) {
+      console.log('carregar load 4')
+      return (
+        <View style={styles.loading}>
+          <ActivityIndicator size="large" color="#cc092c" />
+        </View>
+      )
+    }
+
+  }
+
 
   render() {
 
@@ -151,37 +198,10 @@ class Valida extends Component {
         <Text style={styles.login}>{title}</Text>
         <View style={styles.form}>
           <View style={styles.firstSection2}>
-            {/* <TextInput
-              style={this.state.letter === '' ? styles.txtInputLetterRed : styles.txtInputLetterYelow}
-              autoCapitalize="characters"
-              autoCorrect={false}
-              autoFocus={true}
-              maxLength={3}
-              keyboardType="default"
-              returnKeyType={"next"}
-              onSubmitEditing={() => { this.secondTextInput.focus(); }}
-              onChangeText={letter => {
-                this.setState({ letter: letter })
-                if (letter.length == 3) this.secondTextInput.focus(); //assumption is TextInput ref is input_2
-              }}
-              value={this.state.letter}
-
-            />
-            
-            <TextInput
-              style={this.state.number === '' ? styles.txtInputNumberRed : styles.txtInputNumberYelow}
-              ref={(input) => { this.secondTextInput = input; }}
-              autoCapitalize="none"
-              autoCorrect={false}
-              maxLength={4}
-              keyboardType="numeric"
-              onChangeText={number => this.setState({ number })}
-              value={this.state.number}
-            /> */}
 
             <TextInputMask
-            textAlign={'center'}
-            	placeholder="XXX-0000"
+              textAlign={'center'}
+              placeholder="XXX-0000"
               // returnKeyType={"next"}
               autoCapitalize="characters"
               autoCorrect={false}
@@ -204,11 +224,20 @@ class Valida extends Component {
 
 
           <TouchableOpacity style={styles.buttom} onPress={() => {
+            this.state.isLoading = true;
+            this.setState({ isLoading: true });
+            this.showLoading();
+            this.keyboardDidHide();
             this.doValida();
             // this.navigateToCheck();
           }}>
             <Text style={styles.txtButtom}>{txtButton}</Text>
           </TouchableOpacity>
+
+          {
+            this.showLoading()
+          }
+
         </View>
 
       </SafeAreaView>

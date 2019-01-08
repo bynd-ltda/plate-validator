@@ -31,7 +31,7 @@ export const KEYS = {
     },
     check:{
         txtButtonValidaother: 'Validar outro carro',
-        reportUser: 'Reportar usuario'
+        reportUser: 'Reportar usuário'
     },
     errors: {
         networkTitle: 'Sem conexão com a internet',

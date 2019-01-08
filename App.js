@@ -56,16 +56,16 @@ export default class App extends Component {
           <View ></View>
         </Provider>
       );
-    } else if (this.state.screen !== '') {
+    } else if (this.state.screen === null) {
       return (
         <Provider store={store}>
-          <Routes2 />
+          <Routes />
         </Provider>
       );
     } else {
       return (
         <Provider store={store}>
-          <Routes />
+          <Routes2 />
         </Provider>
       );
     }

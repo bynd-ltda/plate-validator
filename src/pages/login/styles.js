@@ -1,29 +1,29 @@
 import { StyleSheet, Platform } from 'react-native';
-import { colors, metrics, general} from './../../styles';
+import { colors, metrics, general } from './../../styles';
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: colors.primary,
     padding: metrics.basePadding,
 
-   },
-   login:{
-     //marginTop: metrics.baseMargin * 8,
-     marginLeft: '35%',
-     alignItems: 'center',
-     color: colors.black,
-     fontSize: 38,
-     fontWeight:'bold'
-   },
-   form:{
+  },
+  login: {
+    //marginTop: metrics.baseMargin * 8,
+    marginLeft: '35%',
+    alignItems: 'center',
+    color: colors.black,
+    fontSize: 38,
+    fontWeight: 'bold'
+  },
+  form: {
     marginTop: metrics.baseMargin,
-    padding: metrics.basePadding 
-   },
-   txtInputRed:{
-    height:40,
+    padding: metrics.basePadding
+  },
+  txtInputRed: {
+    height: 40,
     color: colors.black,
     fontSize: 18,
     width: '100%',
@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
     borderColor: colors.red,
     marginTop: metrics.baseMargin * 2
 
-   },
-   txtInputYelow:{
-    height:40,
+  },
+  txtInputYelow: {
+    height: 40,
     color: colors.black,
     fontSize: 18,
     width: '100%',
@@ -41,60 +41,69 @@ const styles = StyleSheet.create({
     borderColor: colors.yelow,
     marginTop: metrics.baseMargin * 2
 
-   },
-   buttom:{
-    backgroundColor:colors.red,
-    height:38,
+  },
+  buttom: {
+    backgroundColor: colors.red,
+    height: 38,
     marginTop: metrics.baseMargin * 4,
     justifyContent: 'center',
     alignItems: 'center',
-    
-   },
-   buttomDisable:{
-    backgroundColor:colors.regular,
-    height:38,
+
+  },
+  buttomDisable: {
+    backgroundColor: colors.regular,
+    height: 38,
     marginTop: metrics.baseMargin * 4,
     justifyContent: 'center',
     alignItems: 'center',
-    
-   },
-   txtButtom:{
+
+  },
+  txtButtom: {
     //marginTop: metrics.baseMargin * 3,   
     color: colors.white,
     fontWeight: 'bold',
     fontSize: 20
-   },
-   Link:{
+  },
+  loading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  Link: {
     marginTop: metrics.baseMargin * 4,
-   },
-   txtLink:{
+  },
+  txtLink: {
     color: colors.black,
     fontWeight: 'bold',
     fontSize: 22
-   },
-   eyeArea:{
-     right: metrics.baseMargin * 3,
-   },
-   eye:{
-       marginTop: metrics.baseMargin * 2, 
-       width: 30,
-       height: 30
-   },
-   firstSection: {
-       justifyContent:'space-between',
-       alignItems: 'stretch',
-       flexDirection:'row'
-   },
-   count:{
-       marginLeft: '90%'
-   },
-   errorLoring: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      color: colors.red,
-      fontSize: 12,
-      marginTop: 10
-   }
+  },
+  eyeArea: {
+    right: metrics.baseMargin * 3,
+  },
+  eye: {
+    marginTop: metrics.baseMargin * 2,
+    width: 30,
+    height: 30
+  },
+  firstSection: {
+    justifyContent: 'space-between',
+    alignItems: 'stretch',
+    flexDirection: 'row'
+  },
+  count: {
+    marginLeft: '90%'
+  },
+  errorLoring: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: colors.red,
+    fontSize: 12,
+    marginTop: 10
+  }
 
 })
 

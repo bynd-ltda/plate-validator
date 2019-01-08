@@ -70,6 +70,7 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.state.erroLogin = nextProps.auth.message;
+    this.state.isLoading = nextProps.auth.show_load;
     this.callNextScreen(nextProps.auth.login_success)
   }
 
@@ -136,9 +137,9 @@ class Login extends Component {
     if (this.state.email && this.state.password != '') {
       return (
         <TouchableOpacity style={styles.buttom} onPress={() => {
-          console.log('carregando: ' + this.state.isLoading)
-          this.state.isLoading = true
-          console.log('terminou de carregar: ' + this.state.isLoading)
+          // console.log('carregando: ' + this.state.isLoading)
+          this.setState({ isLoading: true });
+          // console.log('terminou de carregar: ' + this.state.isLoading)
           this.showLoading();
           this.keyboardDidHide();
           this.doLogin();
@@ -159,12 +160,12 @@ class Login extends Component {
     }
   }
 
-  showLoading = () => {
+  showLoading ()  {
 
     if (this.state.isLoading == true) {
       return (
-        <View>
-          <ActivityIndicator size="small" color="#00ff00" />
+        <View style={styles.loading}>
+          <ActivityIndicator size="large" color="#cc092c" />
         </View>
       )
     }
@@ -212,7 +213,7 @@ class Login extends Component {
             this.showLoading()
           }
 
-          {/*<Text style={styles.count}>{this.state.password.length}/20</Text>*/}
+          {/* <Text style={styles.count}>{this.state.password.length}/20</Text> */}
 
           {
             this.showButtom()
