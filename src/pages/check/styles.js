@@ -17,6 +17,12 @@ const styles = StyleSheet.create({
      width: 110,
      height: 110,
    },
+   checkCloser: {
+    marginTop: metrics.baseMargin * 4,
+    marginLeft: '25%',
+    width: 110,
+    height: 110,
+  },
    close: {
     marginTop: metrics.baseMargin * 4,
     marginLeft: '25%',
@@ -31,12 +37,18 @@ const styles = StyleSheet.create({
    },
    txtSchedule:{
     marginTop: metrics.baseMargin * 2,
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold'
    },
    txtBolsao:{
     marginTop: metrics.baseMargin * 2,
     fontSize: 20,
+    fontWeight: 'bold'
+   },
+   txtBolsaoWarning:{
+    marginTop: metrics.baseMargin * 2,
+    fontSize: 15,
+    color: colors.yelow,
     fontWeight: 'bold'
    },
    buttomV:{

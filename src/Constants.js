@@ -4,7 +4,8 @@ export const IMAGES = {
    eye : require('./../assets/eye.png'),
    check: require('./../assets/check.png'),
    close: require('./../assets/close.png'),
-   emailSend: require('./../assets/email.png')
+   emailSend: require('./../assets/email.png'),
+   warning: require('./../assets/warning.png')
 }
 
 export const FONTS = {

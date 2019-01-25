@@ -11,7 +11,7 @@ import styles from './styles';
 import { KEYS , IMAGES} from './../../Constants';
 
 
-const { check , close } = IMAGES;
+const { check , close , warning} = IMAGES;
 const { txtButtonValidaother, reportUser } = KEYS.check;
 
  class Check extends Component {
@@ -51,7 +51,57 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
           password: password,
           plate: plate
         });
-      }      
+      }
+      
+  showImage = () => {
+
+    if(this.props.data.data.status !== 'invalid'){
+      if(this.props.data.data.warning !== true){
+        return (
+          <Image style={styles.check} source={check} /> 
+        )
+      }else {
+        return (
+          <Image style={styles.check} source={warning} /> 
+        )
+      }
+    } else {
+      return (
+        <Image style={styles.checkCloser} source={close} /> 
+      )
+    }
+
+  }
+
+  showInformationName = () => {
+    return (
+      this.props.data.data.user !== null ? <Text style={styles.txtSchedule}>Nome: {this.props.data.data.user.name}</Text> : null
+    )
+  }
+
+  showInformationEmail = () => {
+    return(
+      this.props.data.data.user !== null ? <Text style={styles.txtSchedule}>E-mail: {this.props.data.data.user.email}</Text> : null
+    )
+  }
+
+  showInformationTel = () => {
+    return (
+      this.props.data.data.user !== null ? <Text style={styles.txtSchedule}>Tel: {this.props.data.data.user.tel}</Text> : null
+    )
+  }
+
+  showTxtMsg = () => {
+    if(this.props.data.data.warning !== true){
+      return (
+        this.props.data.data.user !== null ? <Text style={ styles.txtBolsao}>Mensagem: {this.props.data.data.parking_lot}</Text> : null
+      )
+    } else {
+      return (
+        this.props.data.data.user !== null ? <Text style={ styles.txtBolsaoWarning}>Mensagem: {this.props.data.data.parking_lot}</Text> : null
+      )
+    }
+  }
 
   showButtom = () => {
     console.log('Tela resultado1: ' + this.props.data.data.status)
@@ -104,18 +154,33 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
           :
           this.props.data.data.status !== 'invalid'  ?
           <View>
-            <Image style={styles.check} source={check} /> 
-            <Text style={styles.txtValid}>Carrro Válido</Text>
+            {this.showImage()}
+            <Text style={styles.txtValid}>Carro Válido</Text>
           </View>
           :
-          <View>
-            <Image style={styles.close} source={close} />
+          <View> 
+            {this.showImage()}
             <Text style={styles.txtValid}>Carro não autorizado </Text>
           </View>
         }
         <Text style={styles.txtSchedule}>Placa: {this.props.data.data.plate}</Text>
-        <Text style={styles.txtSchedule}>Carona: {this.props.data.data.ride_schedule}</Text>
-        <Text style={styles.txtBolsao}>Bolsão: {this.props.data.data.parking_lot}</Text>
+        {/* <Text style={styles.txtSchedule}>Carona: {this.props.data.data.ride_schedule}</Text> */}
+        
+        {/* <Text style={styles.txtBolsao}>Bolsão: {this.props.data.data.parking_lot}</Text> */}
+       
+        {/* <Text style={ styles.txtBolsao styles.txtBolsaoWarning }>Mensagem: {this.props.data.data.parking_lot}</Text> */}
+
+        {
+          this.props.data.data.user === null ? null : <Text style={styles.txtSchedule}>Usuário</Text>
+        }
+        <View>{this.showInformationName()}</View>
+        <View>{this.showInformationEmail()}</View>
+        <View>{this.showInformationTel()}</View>
+        
+        <View>{this.showTxtMsg()}</View>
+          
+          
+
         {
           this.props.data.data.status === '' ? null : this.showButtom()
         }

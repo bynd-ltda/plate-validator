@@ -9,7 +9,13 @@ const initialState = {
         status: '',
         plate: '',
         ride_schedule: '',
-        parking_lot: ''
+        parking_lot: '',
+        warning: false,
+        user: {
+            name: '',
+            tel: '',
+            email: ''
+        }
     }
 }
 
