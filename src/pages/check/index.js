@@ -109,14 +109,35 @@ const { txtButtonValidaother, reportUser } = KEYS.check;
     console.log('Tela resultado3: ' + this.props.data.data.ride_schedule)
     console.log('Tela resultado4: ' + this.props.data.data.parking_lot)
         if(this.props.data.data.status !== 'invalid'){
-          return (
-            <TouchableOpacity style={styles.buttom} onPress={ () => {
+          if(this.props.data.data.warning !== true){
+            return (
+              <TouchableOpacity style={styles.buttom} onPress={ () => {
+                this.navigateToValida();
+              
+              }}>
+                <Text style={styles.txtButtom}>{txtButtonValidaother}</Text>
+              </TouchableOpacity>
+            )
+          }else {
+            return (
+              <View>
+            <TouchableOpacity style={styles.buttomV} onPress={ () => {
               this.navigateToValida();
             
             }}>
-              <Text style={styles.txtButtom}>{txtButtonValidaother}</Text>
+              <Text style={styles.txtButtomV}>{txtButtonValidaother}</Text>
             </TouchableOpacity>
-          )
+            <TouchableOpacity style={styles.buttomV} onPress={ () => {
+              this.navigateToReport();
+            
+            }}>
+              <Text style={styles.txtButtomV}>{reportUser}</Text>
+            </TouchableOpacity>
+              
+            </View>
+            )
+          }
+         
         } else {
           return (
             <View>

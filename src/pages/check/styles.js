@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor:colors.red,
     height:40,
     width: 200,
-    marginTop: metrics.baseMargin * 4,
+    marginTop: metrics.baseMargin * 1,
     justifyContent: 'center',
     alignItems: 'center',
     
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor:colors.red,
     height:40,
     width: '80%',
-    marginTop: metrics.baseMargin * 4,
+    marginTop: metrics.baseMargin * 1,
     justifyContent: 'center',
     alignItems: 'center',
     
