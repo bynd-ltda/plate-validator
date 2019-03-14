@@ -60,11 +60,6 @@ class Valida extends Component {
           Sair
         </Text>
         </TouchableOpacity>
-        // <Button
-        //   onPress={() => params.handleSave()}
-        //   title="Sair"
-        //   color="#cc092c"
-        // />
       ),
       headerLeft: null,
       title: 'Validação',
@@ -73,8 +68,6 @@ class Valida extends Component {
   };
 
   navigateToExit = () => {
-    //  AsyncStorage.removeItem('email_key');
-    //  AsyncStorage.removeItem('senha_key');
     AsyncStorage.setItem('senha_key', '');
     this.props.navigation.navigate('Login', {
       email: '',
@@ -201,7 +194,7 @@ class Valida extends Component {
 
             <TextInputMask
               textAlign={'center'}
-              placeholder="XXX-0000"
+              placeholder="XXX0000"
               // returnKeyType={"next"}
               autoCapitalize="characters"
               autoCorrect={false}
@@ -211,7 +204,7 @@ class Valida extends Component {
               ref={(input) => { this.secondTextInput2 = input; }}
               type={'custom'}
               options={{
-                mask: 'AAA-9999'
+                mask: 'AAA9999'
               }}
               onChangeText={letter => {
                 this.setState({ letter: letter })
@@ -229,7 +222,6 @@ class Valida extends Component {
             this.showLoading();
             this.keyboardDidHide();
             this.doValida();
-            // this.navigateToCheck();
           }}>
             <Text style={styles.txtButtom}>{txtButton}</Text>
           </TouchableOpacity>
