@@ -8,12 +8,14 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@bugsnag/expo": "^6.5.1",
     "appcenter": "3.0.0",
     "appcenter-analytics": "3.0.0",
     "appcenter-crashes": "3.0.0",
     "axios": "^0.19.2",
     "base-64": "^0.1.0",
     "expo": "~36.0.0",
+    "expo-font": "latest",
     "expokit": "^36.0.1",
     "lodash": "latest",
     "react": "~16.9.0",

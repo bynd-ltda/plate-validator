@@ -11,11 +11,11 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon2.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#424242"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,23 +24,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.bynd.validator",
-      "publishBundlePath": "ios/validador-de-placa/Supporting/shell-app.bundle",
-      "publishManifestPath": "ios/validador-de-placa/Supporting/shell-app-manifest.json"
+      "supportsTablet": true
     },
     "android": {
       "package": "com.bind",
-      "versionCode": 101,
-      "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
-      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
+      "versionCode": 104
     },
     "description": "",
-    "isDetached": true,
-    "detach": {
-      "iosExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/ios-v2.14.3-sdk36.0.0-00f587c0-b8c9-4b6b-88f6-2ccd4f20dc9c.tar.gz",
-      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.14.2-sdk36.0.0-ce7e16db-fd5d-4fdd-bdeb-701ba94a04d1.tar.gz"
+    "extra": {
+      "bugsnag": {
+        "apiKey": "01b2e11d62da1d2348fcb6536f9605e9"
+      }
     },
-    "scheme": "exp4efefb48a65742c39fc414e45c464c79"
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "@bugsnag/expo/hooks/post-publish.js",
+          "config": {}
+        }
+      ]
+    }
   }
 }

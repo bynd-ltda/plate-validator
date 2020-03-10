@@ -1,13 +1,24 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {Text, View} from 'react-native';
 import Validator from './pages/Validator'
+import bugsnag from '@bugsnag/expo';
+
+const bugsnagClient = bugsnag();
+
+const ErrorBoundary = bugsnagClient.getPlugin('react')
 
 export default function App() {
-  return (<>
-      <Validator/>
-    </>
-  );
+	return (<>
+			<ErrorBoundary FallbackComponent={ErrorView}>
+				<Validator/>
+			</ErrorBoundary>
+		</>
+	);
 }
+const ErrorView = ({}) => <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+	<Text>Aconteceu algum
+		problema, feche e abra o app</Text>
+</View>
 
 
 
