@@ -43,7 +43,11 @@ export default () => {
 	const autocomplete = (plate) => {
 		setLoading(true);
 		fetchAutoCompletePlate(plate).then(r => {
-			setResult(r.data.data || [])
+			if (r.data !== null) {
+				setResult((r.data.data) || [])
+			} else {
+				setResult([])
+			}
 		}).catch(e => {
 			setResult([])
 		}).finally(() => {
